@@ -26,14 +26,14 @@ runs:
       working-directory: ${{ runner.temp }}
       env:
         # renovate: datasource=github-releases depName=balena-io/balena-cli
-        BALENA_CLI_VERSION: v23.2.21
+        BALENA_CLI_VERSION: v23.2.30
       run: |
         echo "release=${BALENA_CLI_VERSION}" >> "${GITHUB_OUTPUT}"
 
     - name: Restore tool cache
       if: inputs.skip-cache != 'true'
       id: cache
-      uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5
+      uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
       with:
         path: ${{ runner.tool_cache }}/balena
         key: balena-cli-${{ runner.os }}-${{ runner.arch }}-${{ steps.latest.outputs.release || inputs.cli-version }}
